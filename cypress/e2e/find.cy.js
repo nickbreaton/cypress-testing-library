@@ -215,4 +215,18 @@ describe('find* dom-testing-library commands', () => {
   })
 })
 
+describe('find* command is first to run', {testIsolation: false}, () => {
+  // eslint-disable-next-line no-undef
+  before(() => {
+    cy.visit('cypress/fixtures/test-app/')
+  })
+
+  it('can run one command', () => {
+    cy.findByLabelText('Label 1').click().type('Hello Input Labelled By Id')
+  })
+
+  it('can run a second command', () => {
+    cy.findByLabelText('Label 1').click().type('Hello Input Labelled By Id')
+  })
+})
 /* global cy */
